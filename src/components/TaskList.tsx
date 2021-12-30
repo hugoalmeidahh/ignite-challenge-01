@@ -32,6 +32,7 @@ export function TaskList() {
       isComplete: false
     }
     setTasks([...tasks, itemTask])
+    setNewTaskTitle('')
   }
 
   function checkStatus(isComplete: boolean) {
@@ -39,21 +40,18 @@ export function TaskList() {
   }
 
   function handleToggleTaskCompletion(id: number) {
-    console.log(id)
-    console.log(tasks)
+    // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
     setTasks(
       tasks.map(item => 
           item.id === id 
           ? {...item, isComplete : checkStatus(item.isComplete)  } 
           : item 
     ))
-    // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
   }
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
     setTasks(tasks.filter(task => task.id !== id));
-    console.log(tasks)
   }
 
   return (
