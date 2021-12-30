@@ -14,8 +14,24 @@ export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
+  function uniqueId(lenght: number) {
+    // For unique ID Ramdon I get time from new Date.now() and Sum a random:
+    return (new Date().getTime() + Math.floor(Math.random() * lenght) + 1)
+  }
+
   function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
+    if(newTaskTitle == '') {
+      alert("Informe a Tarefa!")
+      return
+    }  
+
+    const itemTask = {
+      id: uniqueId(tasks.length),
+      title: newTaskTitle,
+      isComplete: false
+    }
+    setTasks([...tasks, itemTask])
   }
 
   function handleToggleTaskCompletion(id: number) {
